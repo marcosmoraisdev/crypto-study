@@ -6,8 +6,8 @@
     <title>CryptoZombies front-end</title>
     <script language="javascript" type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
-
+    <script language="javascript" type="text/javascript" src="./node_modules/web3/dist/web3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="cryptozombies_abi.js"></script>
 </head>
 
 <body>
@@ -17,10 +17,9 @@
     <script>
         var cryptoZombies;
         var userAccount;
-
         function startApp() {
             var cryptoZombiesAddress = "YOUR_CONTRACT_ADDRESS";
-            cryptoZombies = new web3js.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+            cryptoZombies = new web3.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
 
             var accountInterval = setInterval(function () {
 
@@ -118,12 +117,12 @@
 
         window.addEventListener('load', function () {
 
-
             if (typeof web3 !== 'undefined') {
 
-                web3js = new Web3(web3.currentProvider);
+                web3 = new Web3(web3.currentProvider);
             } else {
 
+                web3 = new Web3(new Web3.providers.WebsocketProvider("wss://mainnet.infura.io/ws"));
 
             }
 
